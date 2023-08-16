@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Access Token Extractor1</title>
+    <title>Access Token Extractor2</title>
 </head>
 <body>
-    <h1>Access Token Extractor1</h1>
+    <h1>Access Token Extractor2</h1>
     <div>
         <h2>API Response:</h2>
         <pre id="apiResponse"></pre>
@@ -26,12 +26,17 @@
             var requestOptions = {
                 method: "GET",
                 headers: headers,
-                mode: "cors",  // Use CORS mode
+                mode: "cors",
                 cache: "default"
             };
 
             fetch(apiUrl, requestOptions)
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("API request failed with status: " + response.status);
+                    }
+                    return response.json();
+                })
                 .then(data => {
                     console.log("API Response:", data);
                     document.getElementById("apiResponse").textContent = JSON.stringify(data, null, 2);
