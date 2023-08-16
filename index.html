@@ -41,8 +41,7 @@
                     console.log("API Response:", data);
                     document.getElementById("apiResponse").textContent = JSON.stringify(data, null, 2);
                 })
-                .catch(error => {
-                    console.error("API Error:", error);
+                .catch(error => { 
                     document.getElementById("apiResponse").textContent = "Error fetching data from API";
                 });
         }
